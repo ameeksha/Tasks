@@ -4,6 +4,7 @@ Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
+const activateAccount = require('./routes/activateAccount');
 const express = require('express');
 const app = express();
 
@@ -19,6 +20,7 @@ mongoose.connect('mongodb+srv://ameeksha:oenYSqdvqpYcAXaL@cluster0.1j2uu.mongodb
 app.use(express.json());
 app.use('/api/signup', users);
 app.use('/api/login', auth);
+app.use('/api/activate-account', activateAccount);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
