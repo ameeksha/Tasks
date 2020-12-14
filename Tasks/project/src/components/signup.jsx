@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 const Signup = () => {
 
   const [state, setState] = useState({
-    name:'',
+    name: '',
     email: '',
     password: ''
   });
@@ -19,14 +19,14 @@ const Signup = () => {
       .then(response => {
         console.log(response.data);
         history.push('/login')
-      
+
       })
       .catch(error => {
         console.log(error);
         alert(error)
       })
     setState({
-      name:'',
+      name: '',
       email: '',
       password: ''
     })
@@ -53,7 +53,7 @@ const Signup = () => {
           <label>Password</label>
           <input type="password" className="form-control" placeholder="Enter password" name="state[password]" value={state.password} onChange={e => setState({ ...state, password: e.target.value })} />
         </div>
-         <button type="submit" className="btn btn-primary btn-block">Submit</button>
+        <button type="submit" className="btn btn-primary btn-block">Submit</button>
       </form>
     </div>
   );

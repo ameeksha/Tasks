@@ -5,6 +5,7 @@ import Signup from './components/signup';
 import ActivateEmail from './components/activateEmail'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Dashboard from './components/dashboard';
+import Main from './components/main';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/activateEmail/:id" component={ActivateEmail} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/main" component={Main} />
         <Redirect from="/" exact to="/login" />
       </Switch>
     </React.Fragment>

@@ -10,7 +10,8 @@ const router = express.Router();
 router.post('/', async (req, res) => {
 
     const { token } = req.body;
-
+    // console.warn('tokn');
+    // console.warn(token)
 
     if (token) {
         jwt.verify(token, config.get('jwtPrivateKey'), function (err, decodeToken) {

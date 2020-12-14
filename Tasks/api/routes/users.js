@@ -8,8 +8,20 @@ const express = require('express');
 const router = express.Router();
 const nodeMailer = require('nodemailer');
 
+router.get('/users', function (req, res) {
+  User.find().then((data) => {
+    res.json(data);
+  })
+});
 
-router.post('/', async (req, res) => {
+router.get('/user-count', function (req, res) {
+  User.find().countDocuments().then((data) => {
+    res.json(data);
+  })
+});
+
+
+router.post('/signup', async (req, res) => {
   const email = req.body.email;
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -36,8 +48,8 @@ router.post('/', async (req, res) => {
   var mailOptions = {
     from: 'sender email',
     to: email,
-    subject: 'Testing',
-    html: `<h2>Please find the below link</h2>
+    subject: 'Account Activation',
+    html: `<h2>Please click on the below link to activate your account</h2>
    <p>http://localhost:3000/activateEmail/${token}</p> `
   }
   transport.sendMail(mailOptions, function (error, info) {
