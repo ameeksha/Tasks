@@ -7,7 +7,8 @@ const Signup = () => {
   const [state, setState] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    type:''
   });
 
   const history = useHistory();
@@ -28,7 +29,8 @@ const Signup = () => {
     setState({
       name: '',
       email: '',
-      password: ''
+      password: '',
+      type: ''
     })
   }
 
@@ -52,6 +54,10 @@ const Signup = () => {
         <div className="form-group mb-5">
           <label>Password</label>
           <input type="password" className="form-control" placeholder="Enter password" name="state[password]" value={state.password} onChange={e => setState({ ...state, password: e.target.value })} />
+        </div>
+        <div className="form-group mb-5">
+          <label>Type</label>
+          <input type="type" className="form-control" placeholder="Enter type of user" name="state[type]" value={state.type} onChange={e => setState({ ...state, type: e.target.value })} />
         </div>
         <button type="submit" className="btn btn-primary btn-block">Submit</button>
       </form>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AssignTask from './assignTask';
+import { Button } from 'react-bootstrap';
 
 const Sidebar = () => {
 
-    const count = 0;
+    // const count = 0;
     const sidenav = {
         height: "100%",
         width: "300px",
@@ -20,6 +22,7 @@ const Sidebar = () => {
     const [tasks, setTasks] = useState([]);
     const [showuser, setShowuser] = useState(false);
     const [showtask, setShowtask] = useState(false);
+    const [showModal, setShow] = useState(false);
 
     const getUser = e => {
         e.preventDefault();
@@ -57,8 +60,9 @@ const Sidebar = () => {
 
     }
 
-
-
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const handleSubmit = () => setShow(false);
 
 
     return (
@@ -70,13 +74,17 @@ const Sidebar = () => {
                 showuser ?
                     <p className="mt-3">{
                         users.map(user => <ul key={user._id}>
-                            <li>{user.name}</li>
+                            <li>{user.name}
+                            <Button className="btn-shadow-2 ml-4" variant="primary"  onClick={handleShow}  >
+                        + Assign Task
+                    </Button>
+                    <AssignTask user_id={user._id} user_email={user.email} show={showModal} onHide={handleClose} onSubmit={handleSubmit}></AssignTask></li>
                         </ul>)
                     }</p>
                     : (showtask ?
                         <p className="mt-3">{
                             tasks.map(task => <ul key={task._id}>
-                                <li>{task.name}</li>
+                                <li>{task.task_name}</li>
                             </ul>)
                         }</p>
                         : null)

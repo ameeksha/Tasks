@@ -18,12 +18,12 @@ router.post('/', async (req, res) => {
             if (err) {
                 return res.status(400).json({ error: 'Incorrect or expired link' })
             }
-            const { name, email, password } = decodeToken;
-
+            const { name, email, password, type } = decodeToken;
+               
             User.findOne({ email }).exec((err, user) => {
                 if (user) return res.status(400).send('User already registered.');
 
-                let newUser = new User({ name, email, password });
+                let newUser = new User({ name, email, password, type });
                 //   const salt = bcrypt.genSalt(10);
                 //   newUser.password =  bcrypt.hash(newUser.password);
                 newUser.save((err, success) => {

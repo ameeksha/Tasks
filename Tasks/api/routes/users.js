@@ -9,13 +9,13 @@ const router = express.Router();
 const nodeMailer = require('nodemailer');
 
 router.get('/users', function (req, res) {
-  User.find().then((data) => {
+  User.find({type: "user"}).then((data) => {
     res.json(data);
   })
 });
 
 router.get('/user-count', function (req, res) {
-  User.find().countDocuments().then((data) => {
+  User.find({type: "user"}).countDocuments().then((data) => {
     res.json(data);
   })
 });
@@ -33,7 +33,7 @@ router.post('/signup', async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   //   user.password = await bcrypt.hash(user.password, salt);
   //   await user.save();
-  const token = jwt.sign({ name: req.body.name, email: req.body.email, password: await bcrypt.hash(req.body.password, salt) }, config.get('jwtPrivateKey'));
+  const token = jwt.sign({ name: req.body.name, email: req.body.email, password: await bcrypt.hash(req.body.password, salt), type: req.body.type}, config.get('jwtPrivateKey'));
   //   const token = user.generateAuthToken();
   var transport = nodeMailer.createTransport({
     host: 'smtp.gmail.com',

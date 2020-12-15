@@ -6,6 +6,8 @@ import ActivateEmail from './components/activateEmail'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Dashboard from './components/dashboard';
 import Main from './components/main';
+import Userpanel from './components/userpanel';
+// import Tasklist from './components/tasklist';
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Route path="/activateEmail/:id" component={ActivateEmail} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/main" component={Main} />
+        <Route path="/user-panel" component={Userpanel} />
         <Redirect from="/" exact to="/login" />
       </Switch>
     </React.Fragment>

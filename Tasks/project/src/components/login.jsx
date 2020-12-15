@@ -20,13 +20,19 @@ const Login = () => {
     axios.post('/login', state)
       .then(response => {
         console.log(response.data);
-        localStorage.setItem('login', JSON.stringify({
-          login: true,
-          user_id: response.data.data.id,
-          user_email: response.data.data.email
-        }))
+      localStorage.setItem('user_id', response.data.data.id);
+      localStorage.setItem('user_email', response.data.data.email);
+      localStorage.setItem('user_type', response.data.data.type);
+      const type = localStorage.getItem('user_type');
+      if(type=='admin')
+      {
         history.push('/main')
-
+      }
+      else
+      {
+        history.push('/user-panel')
+      }
+      
       })
       .catch(error => {
         console.log(error);
